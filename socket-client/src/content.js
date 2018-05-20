@@ -1,48 +1,47 @@
 import React, {Component} from 'react';
 import Messages from './message.js'
 import TextInput from './textinput.js'
+const allusers = ['Mike Ross', 'Louis Litt', 'Harvey Specter', 'Rachel Zane']
+const defaultMsg = "This is a long long long long long long long long long long long long long long long long long long default message to "
+
 
 class Content extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      key_num: 5,
-      messages: [
-        {key: '1', msg: 'first'},
-        {key: '2', msg: 'second'},
-        {key: '3', msg: 'third'},
-        {key: '4', msg: 'fourth'},
-        ]
+    var contactusers = allusers;
+    for(var i = 0; i < allusers.length; i++){
+      if(contactusers[i] === this.props.user) contactusers.splice(i,1);      
     }
-  }
-  updateMsg = newMsg => {
-    const { messages } = this.state;
-    this.setState({
-      key_num: this.state.key_num+1
-    });
-    messages.push({
-      key: "id" + this.state.key_num,
-      msg: newMsg
-    })
-    this.setState({ messages });
+    // console.log(contactusers);
+    // this.state = {
+    //   key_num: 1,
+    //   messages: [{key: '0', msg: this.props.defaultMsg}]
+    // }
+    // this.updateMsg(this.props.defaultMsg);
+    // }
+//   updateMsg = newMsg => {
+//     const { messages } = this.state;
+//     this.setState({
+//       key_num: this.state.key_num+1
+//     });
+//     messages.push({
+//       key: "id" + this.state.key_num,
+//       msg: newMsg
+//     })
+//     this.setState({ messages });
   }
   render() {
     return (
     <div class="content">
 		<div class="contact-profile">
-			<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-			<p>Harvey Specter</p>
-			<div class="social-media">
-				<i class="fa fa-facebook" aria-hidden="true"></i>
-				<i class="fa fa-twitter" aria-hidden="true"></i>
-				 <i class="fa fa-instagram" aria-hidden="true"></i>
-			</div>
+			<img src={this.props.users[this.props.contact].imgURL} alt="" />
+			<p>{this.props.users[this.props.contact].name}</p>
 		</div>
         <Messages
-          messages={this.state.messages}
+          messages={this.props.messages}
         />
         <TextInput
-          updateMsg={this.updateMsg}
+          updateMsg={this.props.updateMsg}
         />
 	</div>
     )
@@ -51,3 +50,12 @@ class Content extends Component {
 
 
 export default Content;
+
+
+
+
+			/* <div class="social-media">
+				<i class="fa fa-facebook" aria-hidden="true"></i>
+				<i class="fa fa-twitter" aria-hidden="true"></i>
+				 <i class="fa fa-instagram" aria-hidden="true"></i>
+			</div> */

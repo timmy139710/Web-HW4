@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Contact2 extends Component {
+class Contact extends Component {
 
   constructor(props){
       super(props);
@@ -24,12 +24,13 @@ class Contact2 extends Component {
             class:"contact active",
           });
         }
-        this.props.parentCallback(name);
+        this.props.parentCallback(this.props.contact);
+        this.props.setURL(this.props.url);
       });
     console.log(this.state)
     }      
   setclass() {
-    if(this.state.name === this.props.contactname)
+    if(this.props.contact === this.props.curcontact)
         return "contact active";
     else 
         return "contact";
@@ -42,8 +43,8 @@ class Contact2 extends Component {
           <span class="contact-status online"></span>
           <img src={this.props.url} alt="" />
           <div class="meta">
-              <p class="name">{this.state.name}</p>
-              <p class="preview">You just got LITT up, Mike.</p>
+              <p class="name">{this.props.user}</p>
+              <p class="preview">{this.props.users[this.props.contact].messages[0].msg}</p>
           </div>
       </div>
       </span>
@@ -53,4 +54,4 @@ class Contact2 extends Component {
 }
 
 
-export default Contact2
+export default Contact

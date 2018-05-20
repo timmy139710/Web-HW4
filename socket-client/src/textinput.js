@@ -3,7 +3,10 @@ import React, {Component} from 'react'
 class TextInput extends Component{
     constructor(props) {
       super(props);
-      this.state = {value: ''};
+      this.state = {
+          value: '',
+          placeholder:"Write your message..."
+        };
     
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,10 +17,15 @@ class TextInput extends Component{
     }
     
     handleSubmit(event) {
-      this.props.updateMsg(this.state.value);  
-      this.setState({value: ' '});
+      if(this.state.value === '') {
+        alert('No Empty Message')
+      }
+      else {
+        this.props.updateMsg(this.state.value);  
+        this.setState({value: ''});
     //   alert('A name was submitted: ' + this.state.value);
-      event.preventDefault();
+        event.preventDefault();
+      }
     }
             
   render() {
@@ -25,7 +33,7 @@ class TextInput extends Component{
       <div class="message-input">
         <div class="wrap">
         <form onSubmit={this.handleSubmit}>
-        <input ref="InputItem" type="text" placeholder="Write your message..." 
+        <input ref="InputItem" type="text" placeholder={this.state.placeholder}
         value={this.state.value} onChange={this.handleChange} />
         <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
         <button class="submit" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
