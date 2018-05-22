@@ -3,7 +3,7 @@ import Profile from './profile.js';
 import Contact1 from './contact1.js';
 import Contact2 from './contact2.js';
 
-class SidePane extends Component {
+class SidePanel extends Component {
   render() {
     let users = [];
     for (let i = 0; i < this.props.users.length; ++i) {
@@ -20,6 +20,7 @@ class SidePane extends Component {
             user={this.props.users[i].name}
             url={this.props.users[i].imgURL}
             messages={this.props.messages}
+            previews={this.props.previews}
           />
     );
       else         
@@ -34,6 +35,7 @@ class SidePane extends Component {
             user={this.props.users[i].name}
             url={this.props.users[i].imgURL}
             messages={this.props.messages}
+            previews={this.props.previews}
         />
         );
     } 
@@ -53,5 +55,5 @@ class SidePane extends Component {
     );
   }
 }
-export default SidePane;
+export default SidePanel;
 

@@ -3,8 +3,8 @@ var socket = require('socket.io');
 
 var app = express();
 
-server = app.listen(8080, function(){
-  console.log('Server is running on port 8080');
+server = app.listen(8000, function(){
+  console.log('Server is running on port 8000');
 });
 
 io = socket(server);
@@ -22,7 +22,6 @@ for(let i = 0; i < TOTAL_USER; ++i){
     mydataBase[i][j] = [];
   }
 }
-console.log(mydataBase);
 
 io.on('connection', (socket) => {
   console.log(socket.id);

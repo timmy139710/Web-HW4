@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import socketIO from 'socket.io-client';
 import './App.css';
 import './index.css';
-import SidePane from './sidepane.js';
+import SidePanel from './sidepane.js';
 import Login from './login.js';
 import Content from './content.js';
 import sedrasmith_img from './sedrasmith.png'
 import nnrao_img from './nnrao.png'
 import yoda_img from './yoda.jpg'
 import benson_img from './benson.png'
-const defaultMsg = "This is a default message to ";
-const TOTAL_USER = 4;
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +21,6 @@ class App extends Component {
       curdisplay: 0,
       contact_ImgURL: "",
       usr_ImgURL: "",
-      defaultMsg: defaultMsg,
       key_num: 1,
       users: [
         {name: 'Sedra Smith',      messages: [{key: '0', msg: 'MOS有GDS, BJT有CBE, 電子學有三學期 ! '}],                       id:0,  imgURL: sedrasmith_img},
@@ -32,13 +28,12 @@ class App extends Component {
         {name: 'Master Yoda 03',   messages: [{key: '0', msg: 'You have to not only see the tree but also see the forest.'}], id:2,  imgURL: yoda_img},
         {name: 'Benson Yeh',       messages: [{key: '0', msg: '只有放下臺大，才能真正超越臺大 !'}],                               id:3,  imgURL: benson_img},
       ],
-      previews: [],
+      previews: ['MOS有GDS, BJT有CBE, 電子學有三學期 ! ', 'Can you spell my name correctly ?','You have to not only see the tree but also see the forest.','只有放下臺大，才能真正超越臺大 !' ],
       mymessages: [],
       myunread: [0, 0, 0, 0],
-      unread: [0, 0, 0, 0]
     }
 
-    this.socket = socketIO('localhost:8080');
+    this.socket = socketIO('localhost:8000');
     
 
     this.socket.on('MY_RECEIVE_MESSAGE', function(message){
@@ -46,12 +41,23 @@ class App extends Component {
     });
     
     const myaddHistory = data => {
-      if (data.user === (this.state.curuser) && data.contact === (this.state.contact) )
-        this.setState({ mymessages: [...this.state.mymessages, data]});
+      if (data.user === (this.state.curuser) && data.contact === (this.state.contact) ){
+        let newPreviews = this.state.previews;
+        newPreviews[data.contact] = data.message;
+        this.setState({ 
+          mymessages: [...this.state.mymessages, data],
+          previews: newPreviews
+        });
+      }
       else if (data.user === (this.state.curuser) ) {
         let newUnread = this.state.myunread;
+        let newPreviews = this.state.previews;
         newUnread[data.contact]++;
-        this.setState({ myunread: newUnread });
+        newPreviews[data.contact] = data.message;
+        this.setState({ 
+          myunread: newUnread,
+          previews: newPreviews
+        });
       }
     }
 
@@ -60,7 +66,7 @@ class App extends Component {
     });
 
     const myreRender = data => {
-      if(data.user === this.state.curuser && data.contact === this.state.contact) 
+      if(data.user === this.state.curuser && data.contact === this.state.contact)
         this.setState({ mymessages: data.messages});
     }
 
@@ -124,7 +130,7 @@ class App extends Component {
       </div>
 
       <div id="frame" className={displays[1]}>
-        <SidePane        
+        <SidePanel  
           setName={this.setName}
           setImgURL={this.setImgURL}
           usr_ImgURL={this.state.usr_ImgURL}
@@ -133,6 +139,7 @@ class App extends Component {
           contact={this.state.contact}
           unread={this.state.myunread}
           messages={this.state.mymessages}
+          previews={this.state.previews}
         />
         <Content
           className={displays[1]}

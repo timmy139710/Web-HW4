@@ -5,7 +5,6 @@ class Contact1 extends Component {
   constructor(props){
       super(props);
       this.state = {
-        name:this.props.user,
         class:"contact",
         toggled: 0
       }
@@ -13,7 +12,6 @@ class Contact1 extends Component {
     setToggled = e => {
       this.setState( {toggled: this.state.toggled === 1? 0 : 1}, () => {
         var toggled = this.state.toggled;
-        var name = this.props.user;
         if(toggled === 1) {
           this.setState({
             class:"contact",
@@ -43,7 +41,7 @@ class Contact1 extends Component {
           <img src={this.props.url} alt="" />
           <div class="meta">
               <p class="name">{this.props.user}</p>
-              <p class="preview">{this.props.users[this.props.contact].messages[0].msg}</p>
+              <p class="preview">{this.props.previews[this.props.contact]} </p>
           </div>
       </div>
       </span>
