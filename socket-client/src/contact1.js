@@ -27,7 +27,6 @@ class Contact1 extends Component {
         this.props.parentCallback(this.props.contact);
         this.props.setURL(this.props.url);
       });
-    console.log(this.state)
     }      
   setclass() {
     if(this.props.contact === this.props.curcontact)
@@ -52,6 +51,5 @@ class Contact1 extends Component {
     )
   }
 }
-
 
 export default Contact1

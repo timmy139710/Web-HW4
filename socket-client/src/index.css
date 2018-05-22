@@ -587,18 +587,18 @@ body {
   #frame .content .messages ul li:nth-last-child(1) {
   margin-bottom: 20px;
   }
-  #frame .content .messages ul li.sent img {
+  #frame .content .messages ul li.replies img {
   margin: 6px 8px 0 0;
   }
-  #frame .content .messages ul li.sent p {
+  #frame .content .messages ul li.replies p {
   background: #435f7a;
   color: #f5f5f5;
   }
-  #frame .content .messages ul li.replies img {
+  #frame .content .messages ul li.sent img {
   float: right;
   margin: 6px 0 0 8px;
   }
-  #frame .content .messages ul li.replies p {
+  #frame .content .messages ul li.sent p {
   background: #f5f5f5;
   float: right;
   }
@@ -699,3 +699,46 @@ body {
     color:whitesmoke;
     /* background-color: black; */
   }
+
+
+  #frame #login {
+    float: left;
+    min-width: 280px;
+    max-width: 340px;
+    width: 60%;
+    height: 100%;
+    /* background: white; */
+    color: #2c3e50;
+    overflow: hidden;
+    position: relative;
+    }
+  
+  .user-list {
+    position: relative;
+    font-size:25;
+    margin: 50px 0 0 30%;
+    list-style: none;
+    padding: 15px;
+    border: 15px;
+  }
+  
+  #frame #login{
+    position: relative;
+  }
+
+  #frame #login .choose-name{
+    position: absolute;
+    left:20px;
+    font-style: oblique;
+    font-size: 1.5em;
+  }
+
+  #frame #login ul li.user-name{
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+
+  #frame #login ul li.user-name:hover {
+    background:lightblue;
+    }
+  

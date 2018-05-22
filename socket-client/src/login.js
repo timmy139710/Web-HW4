@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './index.css'
 
 class Login extends Component {
 
@@ -9,12 +10,12 @@ class Login extends Component {
   render() {
     var userNames = [];
     for (let i = 0; i < this.props.users.length; ++i) {
-      userNames.push(<li className="users" onClick={()=>this.click(i)}>{this.props.users[i].name}</li>);
+      userNames.push(<li className="user-name" onClick={()=>this.click(i)}>{this.props.users[i].name}</li>);
     }
     return(
-      <div className={this.props.className} >
-        <h1 className="align-center"> Who are U ?</h1>
-        <ul className="align-center user-list">
+      <div id="login" >            
+        <h4 className="choose-name"> Choose User: </h4>
+        <ul className="user-list">
           {userNames}
         </ul>
       </div>

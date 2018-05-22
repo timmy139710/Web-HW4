@@ -14,10 +14,13 @@ class Message extends Component {
 class Messages extends Component {
   render() {
     var messages = [];
-    //default message
-    messages.push(<Message class={"sent"} message={this.props.users[this.props.contact].messages[0].msg}
+    //preview default message
+    messages.push(<Message class={"sent"} message={this.props.users[this.props.curuser].messages[0].msg}
     imgURL={this.props.users[this.props.curuser].imgURL}/>);
+    messages.push(<Message class="replies" message={this.props.users[this.props.contact].messages[0].msg}
+    imgURL={this.props.users[this.props.contact].imgURL}/>);
 
+    //message history
     for (let i = 0; i < this.props.messages.length; ++i){
     if (this.props.messages[i].direct === 0)
       messages.push(<Message class={"sent"}    message={this.props.messages[i].message} 

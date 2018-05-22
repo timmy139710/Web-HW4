@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Contact extends Component {
+class Contact2 extends Component {
 
   constructor(props){
       super(props);
@@ -27,7 +27,6 @@ class Contact extends Component {
         this.props.parentCallback(this.props.contact);
         this.props.setURL(this.props.url);
       });
-    console.log(this.state)
     }      
   setclass() {
     if(this.props.contact === this.props.curcontact)
@@ -54,4 +53,4 @@ class Contact extends Component {
 }
 
 
-export default Contact
+export default Contact2
