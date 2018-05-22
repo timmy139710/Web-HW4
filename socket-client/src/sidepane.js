@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Profile from './profile.js';
-// import Contact1 from './contact1.js';
+import Contact1 from './contact1.js';
 import Contact from './contact2.js';
 // import Contact3 from './contact3.js';
 // import Contact4 from './contact.js';
@@ -17,22 +17,26 @@ class SidePane extends Component {
     let users = [];
     for (let i = 0; i < this.props.users.length; ++i) {
       if (i === this.props.curuser) continue;
-    //   if (this.state.unread[i] !== 0)
-    //     users.push( <div className="relative">
-    //                   <div 
-    //                     className={'avatar ' + this.props.users[i].name} 
-    //                     onClick={()=>this.changeCurChat(this.props.users[i].id)}
-    //                   /> 
-    //                   <div className="unread">
-    //                     <h6> {this.state.unread[i]} </h6>
-    //                   </div>
-    //                 </div>);
-    //   else         
-      users.push( 
-        <Contact
+      if (this.props.unread[i] !== 0)
+        users.push(
+          <Contact
             parentCallback={this.props.setName}
             setURL={this.props.setImgURL}
             contact={i}
+            unread={this.props.unread[i]}
+            users={this.props.users}
+            curcontact={this.props.contact}
+            user={this.props.users[i].name}
+            url={this.props.users[i].imgURL}
+          />
+    );
+      else         
+      users.push( 
+        <Contact1
+            parentCallback={this.props.setName}
+            setURL={this.props.setImgURL}
+            contact={i}
+            unread={''}
             users={this.props.users}
             curcontact={this.props.contact}
             user={this.props.users[i].name}

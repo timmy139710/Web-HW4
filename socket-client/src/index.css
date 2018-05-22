@@ -381,7 +381,7 @@ body {
     width: 100%;
   }
   }
-  #frame #sidepanel #contacts ul li.contact .wrap span {
+  #frame #sidepanel #contacts ul li.contact .wrap .contact-status {
   position: absolute;
   left: 0;
   margin: -2px 0 0 -2px;
@@ -389,7 +389,7 @@ body {
   height: 10px;
   border-radius: 50%;
   border: 2px solid #2c3e50;
-  background: #95a5a6;
+  /* background: #95a5a6; */
   }
   #frame #sidepanel #contacts ul li.contact .wrap span.online {
   background: #2ecc71;
@@ -421,7 +421,22 @@ body {
   }
   #frame #sidepanel #contacts ul li.contact .wrap .meta .name {
   font-weight: 600;
+  position: relative;
   }
+  #frame #sidepanel #contacts ul li.contact .wrap .meta .name .unread{
+    font-weight: 600; 
+    position: absolute;
+    right:10px;
+    background-color: red;
+    display:inline-block;
+    padding: 3px;
+    line-height: 100%;
+
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+  }
+  
   #frame #sidepanel #contacts ul li.contact .wrap .meta .preview {
   margin: 5px 0 0 0;
   padding: 0 0 1px;
@@ -543,6 +558,7 @@ body {
   }
   #frame .content .messages {
   height: auto;
+  /* width: 400px;  */
   min-height: calc(100% - 93px);
   max-height: calc(100% - 93px);
   overflow-y: scroll;
@@ -669,3 +685,17 @@ body {
   outline: none;
   }
   
+  @-webkit-keyframes blinker {
+    from {opacity: 1.0;}
+    to {opacity: 0.0;}
+  }
+  .unread{
+    text-decoration: blink;
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 0.6s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function:ease-in-out;
+    -webkit-animation-direction: alternate;
+    color:whitesmoke;
+    /* background-color: black; */
+  }

@@ -13,7 +13,7 @@ class Contact extends Component {
     setToggled = e => {
       this.setState( {toggled: this.state.toggled === 1? 0 : 1}, () => {
         var toggled = this.state.toggled;
-        var name = this.state.name;
+        var name = this.props.user;
         if(toggled === 1) {
           this.setState({
             class:"contact",
@@ -43,7 +43,7 @@ class Contact extends Component {
           <span class="contact-status online"></span>
           <img src={this.props.url} alt="" />
           <div class="meta">
-              <p class="name">{this.props.user}</p>
+              <p class="name">{this.props.user}<span class="unread">{this.props.unread}</span></p>
               <p class="preview">{this.props.users[this.props.contact].messages[0].msg}</p>
           </div>
       </div>

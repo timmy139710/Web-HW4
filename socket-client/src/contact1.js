@@ -5,7 +5,7 @@ class Contact1 extends Component {
   constructor(props){
       super(props);
       this.state = {
-        name:'Louis Litt',
+        name:this.props.user,
         class:"contact",
         toggled: 0
       }
@@ -13,7 +13,7 @@ class Contact1 extends Component {
     setToggled = e => {
       this.setState( {toggled: this.state.toggled === 1? 0 : 1}, () => {
         var toggled = this.state.toggled;
-        var name = this.state.name;
+        var name = this.props.user;
         if(toggled === 1) {
           this.setState({
             class:"contact",
@@ -24,32 +24,31 @@ class Contact1 extends Component {
             class:"contact active",
           });
         }
-        this.props.parentCallback(name);
+        this.props.parentCallback(this.props.contact);
+        this.props.setURL(this.props.url);
       });
     console.log(this.state)
-    }
-    setclass() {
-      if(this.state.name === this.props.contactname){
-          return "contact active";
-      }
-      else 
-          return "contact";
-    }
-    
+    }      
+  setclass() {
+    if(this.props.contact === this.props.curcontact)
+        return "contact active";
+    else 
+        return "contact";
+  }
   render() {
     return(
     <li class={this.setclass()} onClick={this.setToggled}>
       <span>
       <div class="wrap">
           <span class="contact-status online"></span>
-          <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
+          <img src={this.props.url} alt="" />
           <div class="meta">
-              <p class="name">{this.state.name}</p>
-              <p class="preview">You just got LITT up, Mike.</p>
+              <p class="name">{this.props.user}</p>
+              <p class="preview">{this.props.users[this.props.contact].messages[0].msg}</p>
           </div>
       </div>
       </span>
-    </li>
+    </li>    
     )
   }
 }

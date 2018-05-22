@@ -21,7 +21,8 @@ class TextInput extends Component{
         alert('No Empty Message')
       }
       else {
-        this.props.updateMsg(this.state.value);  
+        // this.props.updateMsg(this.state.value);  
+        this.props.getInput(event, this.state.value);
         this.setState({value: ''});
     //   alert('A name was submitted: ' + this.state.value);
         event.preventDefault();

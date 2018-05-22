@@ -14,7 +14,7 @@ class Content extends Component {
     }
     // console.log(contactusers);
     // this.state = {
-    //   key_num: 1,
+    //   key_num: 1
     //   messages: [{key: '0', msg: this.props.defaultMsg}]
     // }
     // this.updateMsg(this.props.defaultMsg);
@@ -39,9 +39,13 @@ class Content extends Component {
 		</div>
         <Messages
           messages={this.props.messages}
+          users={this.props.users}
+          curuser={this.props.curuser}
+          contact={this.props.contact}
         />
         <TextInput
           updateMsg={this.props.updateMsg}
+          getInput={this.props.getInput}
         />
 	</div>
     )
